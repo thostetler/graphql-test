@@ -1,0 +1,39 @@
+type Query {
+  docs(q: SolrQuery!, sort: [String!] = []): [Document]!
+}
+
+type Document {
+  bibcode: String
+  title: String
+  abstract: String
+  citations: Citations
+  authors: [String!]
+  citationCount: Int
+  doi: [String!]
+  esources: [String!]
+  id: String
+  page: String
+  publication: Publication
+  publicationDate: Date
+  volume: String
+  documentType: String
+  affiliations: [String!]
+}
+
+scalar SolrQuery
+
+type Citations {
+  numReferences: Int!
+  numCitations: Int!
+}
+
+type Publication {
+  name: String!
+  raw: String!
+}
+
+type Date {
+  day: String!
+  month: String!
+  year: String!
+}
