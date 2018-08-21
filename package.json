@@ -4,12 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "watch": "nodemon -e js,graphql index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "graphql-yoga": "^1.16.1",
+    "memoizee": "^0.4.14",
     "node-fetch": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
   }
 }

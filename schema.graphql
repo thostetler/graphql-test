@@ -1,39 +1,57 @@
 type Query {
-  docs(q: SolrQuery!, sort: [String!] = []): [Document]!
+  search(
+    q: SolrQuery!,
+    sort: [String!] = [],
+    rows: Int = 25,
+    start: Int = 0
+  ): Result!
+}
+
+type Result {
+  docs: [Document]!
+  numFound: Int!
+  pageInfo: PageInfo!
+}
+
+type PageInfo {
+  currentPage: Int!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  totalPages: Int!
 }
 
 type Document {
-  bibcode: String
-  title: String
   abstract: String
-  citations: Citations
-  authors: [String!]
+  affiliations: [String]
+  authors: [String]
+  bibcode: String
   citationCount: Int
-  doi: [String!]
-  esources: [String!]
+  citations: Citations
+  documentType: String
+  doi: [String]
+  esources: [String]
   id: String
-  page: String
+  page: [String]
   publication: Publication
   publicationDate: Date
+  title: String
   volume: String
-  documentType: String
-  affiliations: [String!]
 }
 
 scalar SolrQuery
 
 type Citations {
-  numReferences: Int!
-  numCitations: Int!
+  numReferences: Int
+  numCitations: Int
 }
 
 type Publication {
-  name: String!
-  raw: String!
+  name: String
+  raw: String
 }
 
 type Date {
-  day: String!
-  month: String!
-  year: String!
+  day: String
+  month: String
+  year: String
 }
